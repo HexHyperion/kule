@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="PL-pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kulki / pathfinding</title>
+    <script src="dist/bundle.js" defer></script>
+    <style>
+        /* Reset and global styles */
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Wrapper styles */
+        .wrapper {
+            display: flex;
+            gap: 60px;
+        }
+        .wrapperVert {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            min-width: 160px;
+        }
+
+        /* Box styles */
+        #box {
+            height: 630px;
+            width: 630px;
+            border-radius: 10px;
+            background-color: #1e1e1e;
+            display: flex;
+            overflow: hidden;
+            flex-wrap: wrap;
+            z-index: 999;
+        }
+
+        /* Sidebar styles */
+        #sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        #points, #next {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #nextBalls {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Lose message styles */
+        #loseTitle {
+            line-height: 1.5;
+            color: white;
+            display: none;
+        }
+        .titleWrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Cell and ball styles */
+        .cell {
+            height: 70px;
+            width: 70px;
+            border: 1px solid #1e1e1e;
+            background-color: #2e2e2e;
+            box-sizing: border-box;
+            color: cyan;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            border-radius: 5px;
+        }
+        .ball {
+            box-sizing: border-box;
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 50%;
+            background-position: center !important;
+            background-size: 100% 100% !important;
+        }
+
+        /* Header styles */
+        .headerTop {
+            font-size: 36px;
+        }
+
+        /* Animations */
+        @keyframes szmol {
+            0% {
+                transform: translateX(0px) rotate(0deg);
+            }
+            100% {
+                transform: translateX(400vw) rotate(1800deg);
+            }
+        }
+        @keyframes fin {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapperVert" id="sidebar">
+            <div id="points">
+                <h2>Punkty: <span id="pointsNumber">0</span></h2>
+            </div>
+            <div id="next">
+                <h2>Następne:</h2>
+                <div id="nextBalls"></div>
+            </div>
+        </div>
+
+        <div id="box"></div>
+
+    </div>
+
+    <div class="titleWrapper">
+        <h2 id="loseTitle">ugabvyrg</h2>
+    </div>
+</body>
+</html>
